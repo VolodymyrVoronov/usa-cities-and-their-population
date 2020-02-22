@@ -2,9 +2,9 @@
 
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+const form = document.querySelector('.form');
 const suggestions = document.querySelector('.form__suggestions');
 const searchInput = document.querySelector('.form__input');
-const form = document.querySelector('.form');
 const formSuggestions = document.querySelector('.form__suggestions');
 const ESC_KEY = 'Escape';
 
@@ -45,4 +45,10 @@ searchInput.addEventListener('keyup', showMatchesOnDiplay);
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
+});
+
+searchInput.addEventListener('keyup', function(e) {
+  if (e.currentTarget.value.length === 0) {
+    formSuggestions.innerHTML = '';
+  }
 });
