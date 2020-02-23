@@ -40,6 +40,8 @@ function  showMatchesOnDiplay() {
   suggestions.innerHTML = html;
 }
 
+searchInput.focus();
+
 searchInput.addEventListener('change', showMatchesOnDiplay);
 searchInput.addEventListener('keyup', showMatchesOnDiplay); 
 
