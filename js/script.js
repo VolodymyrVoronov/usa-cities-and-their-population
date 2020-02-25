@@ -26,6 +26,7 @@ function numberWithComas(number) {
 }
 
 function  showMatchesOnDiplay() {
+  
   const matchArr = findMatches(this.value, towns);
   const html = matchArr.map(place => {
     const regex = new RegExp(this.value, 'gi');
@@ -38,6 +39,16 @@ function  showMatchesOnDiplay() {
     </li>`;
   }).join('');
   suggestions.innerHTML = html;
+
+  const results = document.querySelectorAll('.form__infos');
+  results.forEach(element => {
+    element.addEventListener('mouseenter', function () {
+      element.style.background = 'tomato';
+    });
+    element.addEventListener('mouseleave', function () {
+      element.style.background = '';
+    });
+  });
 }
 
 searchInput.focus();
@@ -52,5 +63,12 @@ form.addEventListener('submit', function(e) {
 searchInput.addEventListener('keyup', function(e) {
   if (e.currentTarget.value.length === 0) {
     formSuggestions.innerHTML = '';
+  }
+});
+
+searchInput.addEventListener('keyup', function(e) {
+  if (e.key === ESC_KEY && e.currentTarget.value.length > 0) {
+    formSuggestions.innerHTML = '';
+    searchInput.value = '';
   }
 });
